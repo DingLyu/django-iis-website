@@ -67,14 +67,9 @@ Anaconda、PyCharm、MySQL、Microsoft Remote Desktop 与 Microsoft Internet Inf
 static 文件夹下又可以细分称 css，js，img，data，plugins等文件夹，具体功能就不叙述了。
 
 ### 3.3.2 语法与基本功能实现
-为了带大家简单了解网站的运行过程，这里带大家实现一个简单的网页的导航条。
+html, css, js 的语法这里就不介绍了。
 
-首先定义一个
-
-
-
-
-
+django 可以从后台将 content 传到前端 html（在 {% %} 中可以写 python 语法，在 {{ }} 中写变量）。
 
 ### 3.3.3 数据库功能实现
 首先开启MySQL，打开终端，进行如下操作：
@@ -186,7 +181,7 @@ Step 4: 在 IIS 根节点找到 FastCGI 设置，点击 1 以添加新的应用�
 | PYTHONPATH |                 C:\Website\MyWebsite                 |
 | DJANGO_SETTINGS_MODULE |           MyWebsite.settings            |
 
-Step 5: 添加静态文件夹。在settings.py的最后添加以下代码：
+Step 5: 添加静态文件夹。在 settings.py 的最后添加以下代码：
 
     #*********************************发布IIS 必须添加的代码***************************************************
     SITE_ROOT = os.path.abspath(os.path.dirname(__file__))
@@ -202,7 +197,7 @@ Step 5: 添加静态文件夹。在settings.py的最后添加以下代码：
         ('', SITE_STATIC_ROOT),
     )
     #************************************************************************************
-在 settings.py 同级目录下添加名称为 local_static 的目录，并在local_static  目录中添加web.config 内容如下：
+在 settings.py 同级目录下添加名称为 local_static 的目录，并在 local_static  目录中添加 web.config 内容如下：
 
     <?xml version="1.0" encoding="utf-8"?>
     <configuration>
@@ -221,13 +216,16 @@ Step 5: 添加静态文件夹。在settings.py的最后添加以下代码：
 Step 6: 在 IIS 服务中，在"网站->MyWebsite"下添加虚拟文件目录 static，地址为 C:\Website\MyWebsite\MyWebsite\static
 
 ## 5 解答一些疑惑
-### 5.1 为什么要用Django和Microsoft IIS？
+### 5.1 为什么要用 Django 和 Microsoft IIS？
 首先，Django 入门不难，而且功能强大，逻辑就是 Python 的逻辑。其次，Linux 服务器我用的不好，指令老是记不住，所以就把网站服务器设成了 Windows 系统。
 自然而然就用了 Microsoft IIS。
 
-### 5.2 为什么不直接Microsoft Remote Desktop连接远程服务器，直接在远程服务器上完成软件、环境、项目搭建、测试、部署呢？
+### 5.2 为什么不直接 Microsoft Remote Desktop 连接远程服务器，直接在远程服务器上完成软件、环境、项目搭建、测试、部署呢？
 如果你购买的服务器性能很好，那就不存在这个问题。我购买的是轻量化服务器，还是 2 核的，在上面写代码很卡，所以倾向于在个人电脑上做完大部分事情。
 
-### 5.3 为什么非要搭建一个Conda环境并建议选择Python=3.6呢？
-当同时部署多个网站，需要 Python 作为托。
+### 5.3 为什么非要搭建一个 Conda 环境并建议选择 Python=3.6 呢？
+当同时部署多个网站，每个网站都需要一个独立的托管环境（Python）。此外，Python3.6 兼容性好。
+
+## 6 联系方式
+这份文档基于个人的一些经验，也可能存在一些错误和不足。如果有疑问和建议，麻烦您反馈给我（dylan_lyu@sjtu.edu.cn），谢谢。
 
